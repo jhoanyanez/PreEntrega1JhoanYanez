@@ -1,14 +1,36 @@
 
-const ItemListContainer = () => {
+import { useState, useEffect } from 'react';
+import {getProducts, getProductsByCategory} from '../../asyncMock';
+import ItemList from '../ItemList/ItemList';
+import Home from '../Home/Home';
+import { useParams } from 'react-router-dom';
+
+
+const ItemListContainer = ({ greeting }) => {
+    const [products, setProducts] = useState([])
+
+    const {categoryId} = useParams()
+
+    useEffect(() => {
+        const asyncFunc = categoryId ? getProductsByCategory : getProducts
+
+        asyncFunc(categoryId)
+            .then(response => {
+                setProducts(response)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }, [categoryId])
+
     return (
-        <section class="section is-medium">
-            <h1 class="title has-text-grey-dark">Bienvenidos</h1>
-            <h2 class="subtitle has-text-grey">
-                Ofrecemos productos de <strong>Calidad</strong> y a los <strong>Mejores Precios</strong>.
-            </h2>
-        </section>
+        <div className='container'>
+            <h1>{greeting}</h1>
+            <ItemList products={products}/>
+        </div>
     )
 }
 
-export default ItemListContainer
+export default ItemListContainer;
+
 
