@@ -17,8 +17,8 @@ const ItemCount = ({stock, initial, onAdd}) => {
     }
 
     return(
-        <div className="footer">
-            <div className="">
+        <div>
+            <div className="card-footer-item">
                 <button className="button is-danger is-small" onClick={decrement}>-</button>
                 <h4 className="has-text-grey-dark">{quantity}</h4>
                 <button className="button is-danger is-small" onClick={increment}>+</button>

@@ -1,0 +1,12 @@
+article {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 30px;
+    border-color: #c3577e;
+    border-width: 2px;
+    justify-content: center;
+    align-items: center;
+    background-color: beige;
+}
